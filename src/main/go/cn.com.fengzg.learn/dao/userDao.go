@@ -9,7 +9,7 @@ import (
 	创建用户
 */
 func CreateAUser(user *models.User) (err error) {
-	err = dataSource.DB.Create(&user).Error
+	err = dataSources.DB.Create(&user).Error
 	return
 }
 
@@ -18,7 +18,7 @@ func CreateAUser(user *models.User) (err error) {
 */
 func GetAUser(id string) (user *models.User, err error) {
 	user = new(models.User)
-	err = dataSource.DB.Where("id=?", id).First(user).Error
+	err = dataSources.DB.Where("id=?", id).First(user).Error
 	if err != nil {
 		return nil, err
 	}
