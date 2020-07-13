@@ -1,19 +1,19 @@
-package dataSource
+package dataSources
 
 import (
 	"github.com/jinzhu/gorm"
 )
 
-var(
+var (
 	DB *gorm.DB
 )
 
 /*
 	初始化连接数据库
- */
+*/
 func InitMysql() (err error) {
 	url := "root:root@tcp(localhost:3306)/go_learn?charset=utf8mb4&parseTime=True&loc=Local"
-	DB,err = gorm.Open("mysql",url)
+	DB, err = gorm.Open("mysql", url)
 	if err != nil {
 		return
 	}
@@ -22,7 +22,7 @@ func InitMysql() (err error) {
 
 /*
 	关闭数据库
- */
-func Close()  {
+*/
+func Close() {
 	DB.Close()
 }
