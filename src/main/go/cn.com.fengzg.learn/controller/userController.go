@@ -10,7 +10,7 @@ import (
 func CreateAUser(c *gin.Context) {
 
 	var user = new(models.User)
-	c.BindJSON(user)
+	_ = c.BindJSON(user)
 	logic.CreateAUser(user)
 	c.JSON(http.StatusOK, gin.H{
 		"code":    http.StatusOK,
@@ -21,7 +21,7 @@ func CreateAUser(c *gin.Context) {
 }
 
 func GetAUser(c *gin.Context) {
-	id, ok := c.Params.Get("id")
+	id, ok := c.GetQuery("id")
 	if !ok {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    http.StatusBadRequest,
@@ -36,4 +36,7 @@ func GetAUser(c *gin.Context) {
 		"message": "",
 		"data":    user,
 	})
+	/*body, _ := ioutil.ReadAll(c.Request.Body)
+	fmt.Println("body:" + string(body))*/
+
 }

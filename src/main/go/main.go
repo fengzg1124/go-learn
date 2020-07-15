@@ -27,7 +27,7 @@ func main() {
 	//路由初始化
 	r := routers.Init()
 
-	if err := r.Run(); err != nil {
+	if err := r.Run(":8081"); err != nil {
 		fmt.Println("startup service failed, err:" + err.Error())
 	}
 }
